@@ -19,7 +19,7 @@ pipeline {
             steps {
                 // If the folder is k8s-spec, keep this. 
                 // If it is k8s_spec, change the dash (-) to an underscore (_)
-                sh "docker build -f k8s-spec/dockerfile.dockerfile -t ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest ."
+                sh "docker build -f dockerfile.dockerfile -t ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest ."
             }
         }
 
