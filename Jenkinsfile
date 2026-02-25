@@ -2,17 +2,23 @@ pipeline {
     agent any
 
     environment {
-        // Change 'amarp08' to your actual Docker Hub username
         DOCKER_HUB_USER = 'amarp08'
         IMAGE_NAME = 'custom-superset'
-        // This ID must match the one you created in Jenkins Credentials
         REGISTRY_CRED = 'docker-hub-credentials'
     }
 
     stages {
+        stage('Debug Workspace') {
+            steps {
+                // This will print the folder structure so we can fix the path if it fails
+                sh "ls -R"
+            }
+        }
+
         stage('Build Image') {
             steps {
-                // Points to your specific dockerfile location
+                // If the folder is k8s-spec, keep this. 
+                // If it is k8s_spec, change the dash (-) to an underscore (_)
                 sh "docker build -f k8s-spec/dockerfile.dockerfile -t ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest ."
             }
         }
@@ -26,9 +32,9 @@ pipeline {
             }
         }
 
-        stage('Deploy/Update') {
+        stage('Deploy to SysUser VM') {
             steps {
-                // This tells your cluster to refresh the deployment with the new image
+                // This uses the kubeconfig on the SysAdmin VM to talk to SysUser VM (192.168.30.134)
                 sh "kubectl rollout restart deployment superset -n superset"
             }
         }
