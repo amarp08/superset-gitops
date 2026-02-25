@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_USER = 'amarp08'
+        DOCKER_HUB_USER = 'cooding4startup'
         IMAGE_NAME = 'custom-superset'
         REGISTRY_CRED = 'docker-hub-credentials'
     }
