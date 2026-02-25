@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: superset
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/amarp08/superset-gitops' # YOUR ACTUAL URL
+    targetRevision: HEAD
+    path: k8s-spec # This matches your folder name
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: superset
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true

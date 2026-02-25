@@ -1,0 +1,12 @@
+configOverrides:
+  secret: |
+    SECRET_KEY = "something-very-secret"
+
+service:
+  type: NodePort
+  nodePort: 30088
+
+bootstrapScript: |
+  #!/bin/bash
+  superset db upgrade
+  superset init
