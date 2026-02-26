@@ -10,3 +10,8 @@ bootstrapScript: |
   #!/bin/bash
   superset db upgrade
   superset init
+
+image:
+  repository: cooding4startup/custom-superset
+  tag: latest
+  pullPolicy: Always
