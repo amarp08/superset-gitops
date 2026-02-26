@@ -35,7 +35,7 @@ pipeline {
         stage('Deploy to SysUser VM') {
             steps {
                 // This uses the kubeconfig on the SysAdmin VM to talk to SysUser VM (192.168.30.134)
-                sh "kubectl rollout restart deployment superset -n superset"
+                sh "kubectl --context=microk8s rollout restart deployment superset -n superset"
             }
         }
     }
