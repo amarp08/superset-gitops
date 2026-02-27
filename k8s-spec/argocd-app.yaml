@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: superset
+  name: superset-app
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/amarp08/superset-gitops' # YOUR ACTUAL URL
+    repoURL: 'https://github.com/amarp08/superset-gitops.git'
     targetRevision: HEAD
-    path: k8s-spec # This matches your folder name
+    path: k8s-spec # Points to the folder with Chart.yaml
     helm:
       valueFiles:
         - values.yaml

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: superset-custom
+description: Custom Helm chart for Superset with mysqlclient
+type: application
+version: 1.0.0
+appVersion: "1.0.0"

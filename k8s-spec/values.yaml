@@ -1,17 +1,17 @@
-configOverrides:
-  secret: |
-    SECRET_KEY = "something-very-secret"
+image:
+  repository: cooding4startup/custom-superset
+  tag: latest
+  pullPolicy: Always
 
 service:
   type: NodePort
   nodePort: 30088
 
+configOverrides:
+  secret: |
+    SECRET_KEY = "something-very-secret"
+
 bootstrapScript: |
   #!/bin/bash
   superset db upgrade
   superset init
-
-image:
-  repository: cooding4startup/custom-superset
-  tag: latest
-  pullPolicy: Always
